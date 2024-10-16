@@ -35,26 +35,12 @@
         </div>
     </div>
 </nav>
-<div class="container my-5 p-5" style="border:1px solid black;">
-    <h4 class="text-center">New Book Register</h4>
-    <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post">
-        <div class="mb-3">
-            <label htmlfor="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" >
+<div class="container text-center my-5">
+    <h1>Welcome to New Book Store
+    </h1>
+    <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cum debitis dolorum, eum fuga harum optio possimus quidem quod similique. Fugit illum impedit quibusdam recusandae sit soluta suscipit unde voluptatibus?</h6>
+    <img th:src="@{/images/mybgimg.jpg}" width="360px"/>
 
-        </div>
-        <div class="mb-3">
-            <label htmlfor="author" class="form-label" >Author</label>
-            <input type="text" class="form-control" name="author" >
-
-        </div>
-        <div class="mb-3">
-            <label htmlfor="price" class="form-label">Price</label>
-            <input type="text" class="form-control" name="price" >
-
-        </div>
-        <div style="text-align: center;"><button type="submit" class="btn btn-primary">Submit</button></div>
-    </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
