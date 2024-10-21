@@ -1,12 +1,13 @@
 package com.kerubo.BookStoreApp.controller;
 
 import com.kerubo.BookStoreApp.entity.Book;
+import com.kerubo.BookStoreApp.entity.MyBookList;
 import com.kerubo.BookStoreApp.service.BookService;
+import com.kerubo.BookStoreApp.service.MyBookListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private MyBookListService myBookListService;
 
     @GetMapping("/")
     public String home() {
@@ -43,7 +47,16 @@ public class BookController {
         return "redirect:/available_books";  // Redirect to show the list of books
     }
     @GetMapping("/my_books")
-    public String getMyBooks(){
+    public String getMyBooks(Model model){
+        List<MyBookList> list = myBookListService.getAllMyBooks();
+        model.addAttribute("book",list);
         return "myBooks";
+    }
+    @RequestMapping("/mylist/{id}")
+    public String getMyList(@PathVariable("id") int id){
+    Book b = bookService.getBookById(id);
+        MyBookList myBookList = new MyBookList(b.getId(), b.getName(), b.getAuthor(),b.getPrice());
+    myBookListService.saveMyBooks(myBookList);
+    return "redirect:/my_books";
     }
 }
